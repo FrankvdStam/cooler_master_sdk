@@ -1,10 +1,11 @@
-#Cooler master sdk
+# Cooler master sdk
+[![Crates.io](https://img.shields.io/crates/v/cooler_master_sdk)](https://crates.io/crates/cooler_master_sdk)  
 Wraps the official cooler master sdk.
 see https://templates.coolermaster.com/
 
 Requires that the cooler master sdk dll can be found via the path environment variable. If the path to SDKDLL can not be found on the path, a runtime error will occur.
 
-#usage
+# usage
 Using the wrapper "CoolerMasterDevice" type:
 
 
