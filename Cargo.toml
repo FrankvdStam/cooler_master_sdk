@@ -1,6 +1,6 @@
 [package]
 name = "cooler_master_sdk"
-version = "0.1.0"
+version = "0.1.1"
 links = "SDKDLL"
 build = "build.rs"
 authors = ["Frank <frank_stam5@hotmail.com>"]
@@ -8,7 +8,7 @@ license = "MIT"
 description = "Rust wrapper for the cooler master SDK, used to control rgb keyboards."
 repository = "https://github.com/FrankvdStam/cooler_master_sdk"
 homepage = "https://github.com/FrankvdStam/cooler_master_sdk"
-readme = "readme.md"
+readme = "README.md"
 
 [dependencies]
 libc = "0.2.0"
