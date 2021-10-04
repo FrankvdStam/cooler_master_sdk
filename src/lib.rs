@@ -7,6 +7,7 @@ pub struct CoolerMasterDevice
     pub color_matrix: ColorMatrix,
     pub layout: KeyboardLayout,
     pub sdk_version: i32,
+    has_led_control: bool,
 }
 
 impl CoolerMasterDevice
@@ -16,8 +17,6 @@ impl CoolerMasterDevice
     ///Implements Drop - drop will return control to the device's firmware
     pub fn new(device_index: DeviceIndex) -> Self
     {
-        unsafe{ EnableLedControl(true, device_index) };
-
         CoolerMasterDevice
         {
             device_index,
@@ -26,6 +25,7 @@ impl CoolerMasterDevice
             },
             layout:      unsafe{ GetDeviceLayout(device_index) },
             sdk_version: unsafe{ GetCM_SDK_DllVer() },
+            has_led_control: unsafe{ EnableLedControl(true, device_index) },
         }
     }
 
@@ -55,6 +55,22 @@ impl CoolerMasterDevice
             true => Ok(()),
             false => Err(())
         }
+    }
+
+    ///Tries to obtain/drop led control.
+    pub fn set_led_control(&mut self, enable: bool) -> Result<(), ()>
+    {
+        return match unsafe { EnableLedControl(enable, self.device_index) }
+        {
+            true => Ok(()),
+            false => Err(())
+        }
+    }
+
+    ///Returns true if the leds are controlled by this software instead of the device's firmware.
+    pub fn get_led_control(&self) -> bool
+    {
+        return self.has_led_control;
     }
 }
 
